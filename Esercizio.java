@@ -88,7 +88,13 @@ public class Lista<T> {
         
         Nodo<T> nuovoNodo = new Nodo<>(dato);
         nuovoNodo.next = corrente.next;
-        corrente.next = nuovoNodo;
+        corrente.
+        next = nuovoNodo;
     }
 
-    
+    public T leggiTesta() {
+    if (head == null) {
+        throw new NoSuchElementException("Lista vuota");
+    }
+    return head.dato;
+}
