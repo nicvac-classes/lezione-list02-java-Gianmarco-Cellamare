@@ -93,8 +93,22 @@ public class Lista<T> {
     }
 
     public T leggiTesta() {
-    if (head == null) {
-        throw new NoSuchElementException("Lista vuota");
+        if (head == null) {
+           throw new NoSuchElementException("Lista vuota");
+        }
+        return head.dato;
     }
-    return head.dato;
-}
+
+    public T leggiCoda (){
+        if (head == null){
+           throw new NoSuchElementException("Lista vuota");
+        }
+        Nodo<T> current =head;
+        while(current.next!=null){
+            current=current.next;
+        }
+        return current.dato;
+
+    }
+       
+
