@@ -110,5 +110,23 @@ public class Lista<T> {
         return current.dato;
 
     }
+    public T leggiInPosizione(int posizione) {
+        if (posizione < 0) {
+            throw new IndexOutOfBoundsException("Posizione negativa");
+        }
+        
+        Nodo<T> corrente = head;
+        int i = 0;
+        
+        while (corrente != null && i < posizione) {
+            corrente = corrente.next;
+            i++;
+        }
+        
+        if (corrente == null) {
+            throw new IndexOutOfBoundsException("Posizione oltre la fine della lista");
+        }
+        
+        return corrente.dato;
        
 
