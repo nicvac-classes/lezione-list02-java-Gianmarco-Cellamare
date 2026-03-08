@@ -128,5 +128,10 @@ public class Lista<T> {
         }
         
         return corrente.dato;
+
+        public boolean cancella(T dato) {
+            if (head == null) {
+        return false;
+    }
        
 
