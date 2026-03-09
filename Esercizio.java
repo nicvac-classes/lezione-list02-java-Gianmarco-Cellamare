@@ -110,28 +110,59 @@ public class Lista<T> {
         return current.dato;
 
     }
-    public T leggiInPosizione(int posizione) {
-        if (posizione < 0) {
-            throw new IndexOutOfBoundsException("Posizione negativa");
-        }
-        
-        Nodo<T> corrente = head;
-        int i = 0;
-        
-        while (corrente != null && i < posizione) {
-            corrente = corrente.next;
-            i++;
-        }
-        
-        if (corrente == null) {
-            throw new IndexOutOfBoundsException("Posizione oltre la fine della lista");
-        }
-        
-        return corrente.dato;
 
-        public boolean cancella(T dato) {
-            if (head == null) {
+    public boolean cancella(T dato) {
+    if (head == null) {
         return false;
     }
-       
+
+    if (head.dato.equals(dato)) {
+        head = head.next;
+        return true;
+    }
+    
+    Nodo<T> precedente = head;
+    Nodo<T> corrente = head.next;
+    
+    while (corrente != null) {
+        if (corrente.dato.equals(dato)) {
+            precedente.next = corrente.next;
+            return true;
+        }
+        precedente = corrente;
+        corrente = corrente.next;
+    }
+    
+    return false;
+}
+```
+
+
+public T cancellaInPosizione(int posizione) {
+    if (posizione < 0 || head == null) {
+        throw new IndexOutOfBoundsException("Posizione non valida");
+    }
+
+    if (posizione == 0) {
+        T dato = head.dato;
+        head = head.next;
+        return dato;
+    }
+    
+    Nodo<T> precedente = head;
+    int i = 0;
+    
+    while (precedente.next != null && i < posizione - 1) {
+        precedente = precedente.next;
+        i++;
+    }
+    
+    if (precedente.next == null) {
+        throw new IndexOutOfBoundsException("Posizione oltre la fine della lista");
+    }
+    
+    T dato = precedente.next.dato;
+    precedente.next = precedente.next.next;
+    return dato;
+}
 
