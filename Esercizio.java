@@ -166,3 +166,33 @@ public T cancellaInPosizione(int posizione) {
     return dato;
 }
 
+public void concatena(Lista<T> altraLista) {
+    if (altraLista == null || altraLista.head == null) {
+        return;
+    }
+    
+    if (head == null) {
+        head = altraLista.head;
+        return;
+    }
+    
+    Nodo<T> corrente = head;
+    while (corrente.next != null) {
+        corrente = corrente.next;
+    }
+    corrente.next = altraLista.head;
+}
+
+ublic String toString() {
+    StringBuilder sb = new StringBuilder();
+    Nodo<T> corrente = head;
+    
+    while (corrente != null) {
+        sb.append(corrente.dato);
+        sb.append(" -> ");
+        corrente = corrente.next;
+    }
+    sb.append("NULL");
+    
+    return sb.toString();
+}
